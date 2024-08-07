@@ -1,0 +1,197 @@
+{
+  "activos": [],
+  "marcas": [
+    {
+      "id": "M1",
+      "nombre": "LG"
+    },
+    {
+      "id": "M2",
+      "nombre": "COMPUMAX"
+    },
+    {
+      "id": "M3",
+      "nombre": "LOGITECH"
+    },
+    {
+      "id": "M4",
+      "nombre": "BENQ"
+    },
+    {
+      "id": "M5",
+      "nombre": "ASUS"
+    },
+    {
+      "id": "M6",
+      "nombre": "LENOVO"
+    },
+    {
+      "id": "M7",
+      "nombre": "HP"
+    }
+  ],
+  "ubicacion": [
+    {
+      "id": "U1",
+      "nombre": "Apolo"
+    },
+    {
+      "id": "U2",
+      "nombre": "Sputnik"
+    },
+    {
+      "id": "U3",
+      "nombre": "Zona Hunters"
+    },
+    {
+      "id": "U4",
+      "nombre": "Houston"
+    },
+    {
+      "id": "U5",
+      "nombre": "Auditorio"
+    }
+  ],
+  "personas": [
+    {
+      "id": "1027281994",
+      "tipoDocumento": "tD1",
+      "nit": "12121",
+      "nombre": "Samuel ",
+      "email": "karen@email.com",
+      "tipoPersona": "tP1"
+    },
+    {
+      "id": "5",
+      "tipoDocumento": "tD1",
+      "nit": "5",
+      "nombre": "5",
+      "email": "5",
+      "tipoPersona": "tP1"
+    }
+  ],
+  "categorias": [
+    {
+      "id": "C1",
+      "nombre": "Equipo de computo"
+    },
+    {
+      "id": "C2",
+      "nombre": "Electrodomestico"
+    },
+    {
+      "id": "C3",
+      "nombre": "Juego"
+    }
+  ],
+  "tipos": [
+    {
+      "id": "T1",
+      "nombre": "Monitor"
+    },
+    {
+      "id": "T2",
+      "nombre": "Teclado"
+    },
+    {
+      "id": "T3",
+      "nombre": "Mouse"
+    },
+    {
+      "id": "T4",
+      "nombre": "Aire acondicionado"
+    },
+    {
+      "id": "T5",
+      "nombre": "Portatil"
+    },
+    {
+      "id": "T6",
+      "nombre": "Impresora"
+    }
+  ],
+  "estados": [
+    {
+      "id": "E1",
+      "nombre": "No asignado"
+    },
+    {
+      "id": "E2",
+      "nombre": "Asignado"
+    },
+    {
+      "id": "E3",
+      "nombre": "Dado de baja por daño"
+    },
+    {
+      "id": "E4",
+      "nombre": "En reparacion y/o garantia"
+    },
+    {
+      "id": "1",
+      "nombre": "1"
+    },
+    {
+      "id": "1",
+      "nombre": "1"
+    }
+  ],
+  "tipoDocumento": [
+    {
+      "id": "tD1",
+      "nombre": "Cedula"
+    },
+    {
+      "id": "tD2",
+      "nombre": "Cedula de extranjeria"
+    },
+    {
+      "id": "tD3",
+      "nombre": "Pasaporte"
+    }
+  ],
+  "tipoPersona": [
+    {
+      "id": "tP1",
+      "nombre": "Natural"
+    },
+    {
+      "id": "tP2",
+      "nombre": "Juridica"
+    },
+    {
+      "id": "3",
+      "nombre": "3"
+    },
+    {
+      "id": "4",
+      "nombre": "4"
+    }
+  ],
+  "tipoMovAct": [
+    {
+      "id": "tM1",
+      "nombre": "Entrada"
+    },
+    {
+      "id": "4",
+      "nombre": "4"
+    }
+  ],
+  "tipoActivos": [
+    {
+      "id": "tA1",
+      "nombre": "Billetera"
+    },
+    {
+      "id": "4",
+      "nombre": "4",
+      "email": "karen@email.com"
+    },
+    {
+      "id": "6",
+      "nombre": "6",
+      "email": "6"
+    }
+  ]
+}

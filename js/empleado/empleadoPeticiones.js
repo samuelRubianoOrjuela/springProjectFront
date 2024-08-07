@@ -81,7 +81,6 @@ const borrarEmpleado = async (id) => {
     });
 }
 
-
 const getEmpleados = async () =>{
     try {
         const response = await fetch(URL_API + endpoint);
@@ -117,7 +116,7 @@ const getEmpleadoById = async (id) => {
 
 const getPuestos = async () =>{
     try {
-        const response = await fetch(URL_API + 'ciudad');
+        const response = await fetch(URL_API + 'puesto');
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -133,7 +132,7 @@ const getPuestos = async () =>{
 
 const getPuestoById = async (id) => {
     try {
-        const response = await fetch(URL_API + `ciudad/${id}`);
+        const response = await fetch(URL_API + `puesto/${id}`);
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }

@@ -175,7 +175,7 @@ const createAgregarForm = () => {
     getCiudades().then(ciudades => {
         ciudades.forEach(c => {                    
             const option = document.createElement('option');
-            option.setAttribute('value', c.idCiudad);
+            option.value = c.idCiudad;
             option.innerHTML = c.nombreCiudad;
             document.getElementById('select-ciudad').append(option);
         })
@@ -190,8 +190,8 @@ const createAgregarForm = () => {
         };
         agregarOficina(newDict)
     });
-
 }
+
 const createEditDialog = (o) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
@@ -199,20 +199,20 @@ const createEditDialog = (o) => {
         <h1>Editar Oficina</h1>
         <form>
             <div class="box">
-                <label for="edit-ciudad">Ciudad: </label>
-                <select id="edit-ciudad"></select>
+                <label for="select-ciudad">Ciudad: </label>
+                <select id="select-ciudad"></select>
             </div>
             <div class="box">
-                <label for="edit-telefono">Telefono: </label>
-                <input type="number" id="edit-telefono">
+                <label for="input-telefono">Telefono: </label>
+                <input type="number" id="input-telefono">
             </div>
             <div class="box">
-                <label for="edit-direccion1">Direccion 1: </label>
-                <input type="text" id="edit-direccion1">
+                <label for="input-direccion1">Direccion 1: </label>
+                <input type="text" id="input-direccion1">
             </div>
             <div class="box">
-                <label for="edit-direccion2">Direccion 2: </label>
-                <input type="text" id="edit-direccion2">
+                <label for="input-direccion2">Direccion 2: </label>
+                <input type="text" id="input-direccion2">
             </div>
             <button class="submit-button">+</button>
         </form>
@@ -225,17 +225,17 @@ const createEditDialog = (o) => {
     getCiudades().then(ciudades => {
         ciudades.forEach(c => {        
             const option = document.createElement('option');
-            option.setAttribute('id', `option-${c.idCiudad}`)
+            option.id = c.idCiudad;
             option.value = c.idCiudad;
             option.innerHTML = c.nombreCiudad;
             if (o.idCiudad === c.idCiudad) {option.setAttribute('selected','')}
-            document.getElementById('edit-ciudad').append(option);
+            document.getElementById('select-ciudad').append(option);
         })
     })
     getOficinaById(o.idOficina).then(oficina => {
-        document.getElementById('edit-telefono').value = oficina.telefono;
-        document.getElementById('edit-direccion1').value = oficina.lineaDireccion1;
-        document.getElementById('edit-direccion2').value = oficina.lineaDireccion2;
+        document.getElementById('input-telefono').value = oficina.telefono;
+        document.getElementById('input-direccion1').value = oficina.lineaDireccion1;
+        document.getElementById('input-direccion2').value = oficina.lineaDireccion2;
     });
     dialog.append(closeBtn);
     document.body.append(dialog);
@@ -244,36 +244,21 @@ const createEditDialog = (o) => {
     document.querySelector(".submit-button").addEventListener('click', (e) => {
         e.preventDefault();
         const newDict = {
-            "idCiudad": document.querySelector('#edit-ciudad').value,
-            "telefono": document.querySelector('#edit-telefono').value,
-            "lineaDireccion1": document.querySelector('#edit-direccion1').value,
-            "lineaDireccion2": document.querySelector('#edit-direccion2').value
+            "idCiudad": document.querySelector('#select-ciudad').value,
+            "telefono": document.querySelector('#input-telefono').value,
+            "lineaDireccion1": document.querySelector('#input-direccion1').value,
+            "lineaDireccion2": document.querySelector('#input-direccion2').value
         };
         console.log(newDict);
         editarOficina(o.idOficina, newDict);
     });
 }
 
-const createSearchDialog = (o) => {
+const createSearchDialog = (oficina) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     const title = document.createElement('h1');
     title.innerHTML = "Buscar oficinas";
-    getOficinaById(o.idOficina).then(oficina => {
-        Object.values(oficina).forEach((item, i) => {
-            if (i !== 0) {
-                const text = document.createElement('div');
-                text.classList.add('text-container',`text-container-${i}`);
-                dialog.append(text);
-            }
-        })
-        getCiudadById(oficina.idCiudad).then(ciudad => {
-            document.querySelector('.text-container-1').innerHTML = `<i class="bx bxs-circle"></i> Ciudad: ${ciudad.nombreCiudad}`;
-        })
-        document.querySelector('.text-container-2').innerHTML = `<i class="bx bxs-circle"></i> Telefono: ${oficina.telefono}`;
-        document.querySelector('.text-container-3').innerHTML = `<i class="bx bxs-circle"></i> Direccion 1: ${oficina.lineaDireccion1}`;
-        document.querySelector('.text-container-4').innerHTML = `<i class="bx bxs-circle"></i> Direccion 2: ${oficina.lineaDireccion2}`;
-    })
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('bx', 'bx-x');
     closeBtn.addEventListener('click', () => {
@@ -281,8 +266,20 @@ const createSearchDialog = (o) => {
     });
     dialog.append(closeBtn, title);
     document.body.append(dialog);
+    Object.values(oficina).forEach((item, i) => {        
+        if (i !== 0) {
+            const text = document.createElement('div');
+            text.classList.add('text-container',`text-container-${i}`);
+            dialog.append(text);
+        }
+    })
+    getCiudadById(oficina.idCiudad).then(ciudad => {
+        document.querySelector('.text-container-1').innerHTML = `<i class="bx bxs-circle"></i> Ciudad: ${ciudad.nombreCiudad}`;
+    })
+    document.querySelector('.text-container-2').innerHTML = `<i class="bx bxs-circle"></i> Telefono: ${oficina.telefono}`;
+    document.querySelector('.text-container-3').innerHTML = `<i class="bx bxs-circle"></i> Direccion 1: ${oficina.lineaDireccion1}`;
+    document.querySelector('.text-container-4').innerHTML = `<i class="bx bxs-circle"></i> Direccion 2: ${oficina.lineaDireccion2}`;
     dialog.showModal();    
-
 }
 
 const opOficinas = document.getElementById('opOficinas');
@@ -291,15 +288,20 @@ opOficinas.addEventListener('click', ()=>{
     createAgregarForm();
 });
 
-document.getElementById('boton-agregar').addEventListener('click', () => {
-    createAgregarForm();
-});
-document.getElementById('boton-editar').addEventListener('click', () => {
-    createEditarForm();
-});
-document.getElementById('boton-buscar').addEventListener('click', () => {
-    createBuscarForm();
-});
-document.getElementById('boton-borrar').addEventListener('click', () => {
-    createBorrarForm();
-});
+const eventosOficina = () => {
+    document.getElementById('boton-agregar').addEventListener('click', () => {
+        createAgregarForm();
+    });
+    document.getElementById('boton-editar').addEventListener('click', () => {
+        createEditarForm();
+    });
+    document.getElementById('boton-buscar').addEventListener('click', () => {
+        createBuscarForm();
+    });
+    document.getElementById('boton-borrar').addEventListener('click', () => {
+        createBorrarForm();
+    });
+}
+export {
+    eventosOficina
+}

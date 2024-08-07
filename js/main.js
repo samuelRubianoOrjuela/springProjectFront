@@ -1,3 +1,9 @@
+import {
+	eventosEmpleado
+} from './empleado/empleadoStyles.js'
+import {
+	eventosOficina
+} from './oficina/oficinaStyles.js'
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
@@ -139,29 +145,71 @@ allProgress.forEach(item=> {
 	item.style.setProperty('--value', item.dataset.value)
 })
 
+
+
 const opciones = document.querySelectorAll('.opMenu');
 const formularios = document.getElementById('formularios-container');
+const botonesContainer = document.getElementById('botones');
+const ventanas = document.querySelectorAll('.ventana');
 
 opciones.forEach(opcion => {
 	opcion.addEventListener('click', () => {
-		if(!opcion.classList.contains('active')){
-			formularios.classList.toggle('active');
-		} else {
-			formularios.classList.remove('active');
+		let botones = document.querySelectorAll('.boton');
+		botones.forEach(boton => {
+			boton.remove();
+		})
+		for (let i = 0; i <= 3; i++) {
+			const boton = document.createElement('li');
+			boton.classList.add('boton');
+			
+			switch (i) {
+				case 0:
+					boton.id = 'boton-agregar';
+					boton.textContent = 'Agregar';
+					boton.classList.toggle('active');
+					break;			
+				case 1:
+					boton.id = 'boton-editar';
+					boton.textContent = 'Editar';
+					break;			
+				case 2:
+					boton.id = 'boton-buscar';
+					boton.textContent = 'Buscar';
+					break;			
+				case 3:
+					boton.id = 'boton-borrar';
+					boton.textContent = 'Borrar';
+					break;			
+			}
+			botonesContainer.append(boton);
 		}
-	});
-})
-
-const botones = document.querySelectorAll('.boton');
-const ventanas = document.querySelectorAll('.ventana');
-
-botones.forEach((b, i) => {
-	b.addEventListener('click', () => {
+		botones = document.querySelectorAll('.boton');
+		botones.forEach((b, i) => {
+			b.addEventListener('click', () => {
+				botones.forEach((b, i) => {
+					ventanas[i].classList.remove('active');
+					b.classList.remove('active');
+				})
+				ventanas[i].classList.toggle('active');
+				b.classList.toggle('active');
+			})
+		})
+		if(!opcion.classList.contains('active')){
+			formularios.classList.add('active');
+		}
 		botones.forEach((b, i) => {
 			ventanas[i].classList.remove('active');
-			b.classList.remove('active');
 		})
-		ventanas[i].classList.toggle('active');
-		b.classList.toggle('active');
-	})
+		document.getElementById('ventana-agregar').classList.toggle('active');
+		switch (opcion.firstElementChild.id) {
+			case 'opEmpleados':
+				eventosEmpleado();
+				break;
+			case 'opOficinas':
+				eventosOficina();
+				break;
+			default:
+				break;
+		}
+	});
 })

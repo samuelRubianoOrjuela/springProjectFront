@@ -103,9 +103,6 @@ const getOficinaById = async (id) => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
-        if (response.status === 204 || response.headers.get('Content-Length') === '0') {
-            return null;
-        }
         const oficina = await response.json();
         return oficina; 
     } catch (error) {

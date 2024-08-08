@@ -223,7 +223,7 @@ const createEditDialog = (oficina) => {
         dialog.remove();
     });
     dialog.append(closeBtn);
-    document.body.append(dialog);
+    document.getElementById('app').append(dialog);
     getCiudades().then(ciudades => {
         ciudades.forEach(c => {        
             const option = document.createElement('option');
@@ -261,7 +261,7 @@ const createSearchDialog = (oficina) => {
         dialog.remove();
     });
     dialog.append(closeBtn, title);
-    document.body.append(dialog);
+    document.getElementById('app').append(dialog);
     Object.values(oficina).forEach((item, i) => {        
         if (i !== 0) {
             const text = document.createElement('div');

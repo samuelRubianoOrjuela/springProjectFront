@@ -1,8 +1,8 @@
+import {
+    getHeader
+} from '../login/loginStyles.js'
 const URL_API = "http://localhost:8080/";
 const endpoint = "oficina";
-const myHeaders = new Headers({
-    "Content-Type": "application/json"
-});
 
 const agregarOficina = (newDict) => {
     let correct;
@@ -18,8 +18,8 @@ const agregarOficina = (newDict) => {
     if (correct){
         fetch(`${URL_API + endpoint}/nuevo`, {
                 method: 'POST',
-                headers: myHeaders,
-                body: JSON.stringify(newDict),
+                headers: getHeader(),
+                body: JSON.stringify(newDict)
             })
             .then(response => response.json())
             .then(data => {
@@ -45,8 +45,8 @@ const editarOficina = (id, newDict) => {
     if (correct){
         fetch(`${URL_API + endpoint}/actualizar/${id}`, {
                 method: 'PUT',
-                headers: myHeaders,
-                body: JSON.stringify(newDict),
+                headers: getHeader(),
+                body: JSON.stringify(newDict)
             })
             .then(response => response.json())
             .then(data => {
@@ -61,7 +61,7 @@ const borrarOficina = async (id) => {
 
     fetch(`${URL_API + endpoint}/eliminar/${id}`, {
         method: 'DELETE', 
-        headers: myHeaders, 
+        headers: getHeader()
     })
     .then(response => {
         if (!response.ok) {
@@ -83,7 +83,10 @@ const borrarOficina = async (id) => {
 
 const getOficinas = async () =>{
     try {
-        const response = await fetch(URL_API + endpoint);
+        const response = await fetch(URL_API + endpoint, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -99,7 +102,10 @@ const getOficinas = async () =>{
 
 const getOficinaById = async (id) => {
     try {
-        const response = await fetch(URL_API + endpoint + `/${id}`);
+        const response = await fetch(URL_API + endpoint + `/${id}`, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -113,7 +119,10 @@ const getOficinaById = async (id) => {
 
 const getCiudades = async () =>{
     try {
-        const response = await fetch(URL_API + 'ciudad');
+        const response = await fetch(URL_API + 'ciudad', {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -129,7 +138,10 @@ const getCiudades = async () =>{
 
 const getCiudadById = async (id) => {
     try {
-        const response = await fetch(URL_API + `ciudad/${id}`);
+        const response = await fetch(URL_API + `ciudad/${id}`, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }

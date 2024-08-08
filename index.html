@@ -8,83 +8,102 @@
 	<title>Spring</title>
 </head>
 <body>
-	<!-- SIDEBAR -->
-	<section id="sidebar">
-		<div class="contenedor-foto-titulo">
-			<div class="contenedor-foto">
-				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSYssTiQH-eIlsZKQZm-iYKkeY-V26_NMf-Q&s" class="foto">
-			</div>
-			<div class="titulo">
-				<h1>Campuslands</h1>
-			</div>
-		</div>	
-		<ul class="side-menu">
-            <li class="opMenu">
-                <a href="#" id="opProductos"> Productos <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-            </li>
-            <li class="opMenu">
-                <a href="#" id="opClientes"> Clientes <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-            </li>
-            <li class="opMenu">
-                <a href="#" id="opPedidos"> Pedidos <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-            </li>
-            <li class="opMenu">
-                <a href="#" id="opPagos"> Pagos <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-            </li>
-            <li class="opMenu">
-                <a href="#" id="opEmpleados"> Empleados <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-            </li>
-			
-			<li class="opMenu">
-				<a href="#" id="opOficinas"> Oficinas <i class='bx bx-chevron-right icon-right' ></i></a>
-				<ul class="side-dropdown"></ul>
-			</li>
-		</ul>
+	<section id="login" class="active">
+		<section id="box-sesion">
+			<h2>Inicio de sesión</h2>
+			<form method="post">
+				<div class="input-text">
+					<input type="text" id="input-email" placeholder="">
+					<label for="input-email">Username</label>
+				</div>
+				<div class="input-text">
+					<input type="password" id="input-password" placeholder="">
+					<label for="input-password">Contraseña</label>
+				</div>
+				<input type="submit" value="Iniciar" id="submit-button">
+			</form>
+		</section>
 	</section>
-	<!-- SIDEBAR -->
-	
-	<!-- NAVBAR -->
-	<section id="content">
+ 
+	<section id="app">
+		<!-- SIDEBAR -->
+		<section id="sidebar">
+			<div class="contenedor-foto-titulo">
+				<div class="contenedor-foto">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSYssTiQH-eIlsZKQZm-iYKkeY-V26_NMf-Q&s" class="foto">
+				</div>
+				<div class="titulo">
+					<h1>Campuslands</h1>
+				</div>
+			</div>	
+			<ul class="side-menu">
+				<li class="opMenu">
+					<a href="#" id="opProductos"> Productos <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+				<li class="opMenu">
+					<a href="#" id="opClientes"> Clientes <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+				<li class="opMenu">
+					<a href="#" id="opPedidos"> Pedidos <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+				<li class="opMenu">
+					<a href="#" id="opPagos"> Pagos <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+				<li class="opMenu">
+					<a href="#" id="opEmpleados"> Empleados <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+				
+				<li class="opMenu">
+					<a href="#" id="opOficinas"> Oficinas <i class='bx bx-chevron-right icon-right' ></i></a>
+					<ul class="side-dropdown"></ul>
+				</li>
+			</ul>
+		</section>
+		<!-- SIDEBAR -->
+		
 		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu toggle-sidebar' ></i>
-			
-			<div class="profile">
-				<img src="https://avatars.githubusercontent.com/u/131613955?v=4" alt="">
-				<ul class="profile-link">
-					<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
-					<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
-					<li><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
-				</ul>
-			</div>
-		</nav>
-		<main id="main">
-			<section id="formularios-container">
-				<div class="botones-container">
-					<ul id="botones">
-						<li class="boton active" id="boton-agregar">Agregar</li>
-						<li class="boton" id="boton-editar">Editar</li>
-						<li class="boton" id="boton-buscar">Consultar</li>
-						<li class="boton" id="boton-borrar">Eliminar</li>
+		<section id="content">
+			<!-- NAVBAR -->
+			<nav>
+				<i class='bx bx-menu toggle-sidebar' ></i>
+				
+				<div class="profile">
+					<img src="https://avatars.githubusercontent.com/u/131613955?v=4" alt="">
+					<ul class="profile-link">
+						<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
+						<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
+						<li><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
 					</ul>
 				</div>
-				<div class="ventanas-container">
-					<ul id="ventanas">
-						<li class="ventana active" id="ventana-agregar"></li>
-						<li class="ventana" id="ventana-editar"></li>
-						<li class="ventana" id="ventana-buscar"></li>
-						<li class="ventana" id="ventana-borrar"></li>
-					</ul>
-				</div>
-			</section>
-		</main>
+			</nav>
+			<main id="main">
+				<section id="formularios-container">
+					<div class="botones-container">
+						<ul id="botones">
+							<li class="boton active" id="boton-agregar">Agregar</li>
+							<li class="boton" id="boton-editar">Editar</li>
+							<li class="boton" id="boton-buscar">Consultar</li>
+							<li class="boton" id="boton-borrar">Eliminar</li>
+						</ul>
+					</div>
+					<div class="ventanas-container">
+						<ul id="ventanas">
+							<li class="ventana active" id="ventana-agregar"></li>
+							<li class="ventana" id="ventana-editar"></li>
+							<li class="ventana" id="ventana-buscar"></li>
+							<li class="ventana" id="ventana-borrar"></li>
+						</ul>
+					</div>
+				</section>
+			</main>
+		</section>
+		<!-- NAVBAR -->
 	</section>
-	<!-- NAVBAR -->
 	<script src="./js/main.js" async type="module"></script>
 	<script src="./app.js" defer type="module"></script>
 

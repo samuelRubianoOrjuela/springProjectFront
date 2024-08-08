@@ -317,7 +317,7 @@ const createEditDialog = (empleado) => {
         document.getElementById('input-email').value = empleado.email;
     });
     dialog.append(closeBtn);
-    document.body.append(dialog);
+    document.getElementById('app').append(dialog);
     dialog.showModal();    
 
     document.querySelector(".submit-button").addEventListener('click', (ev) => {
@@ -347,7 +347,7 @@ const createSearchDialog = (empleado) => {
         dialog.remove();
     });
     dialog.append(closeBtn, title);
-    document.body.append(dialog);
+    document.getElementById('app').append(dialog);
     Object.values(empleado).forEach((item, i) => {
         if (i !== 0) {
             const text = document.createElement('div');

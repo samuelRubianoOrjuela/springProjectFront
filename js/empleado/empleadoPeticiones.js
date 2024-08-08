@@ -1,8 +1,8 @@
+import {
+    getHeader
+} from '../login/loginStyles.js'
 const URL_API = "http://localhost:8080/";
 const endpoint = "empleado";
-const myHeaders = new Headers({
-    "Content-Type": "application/json"
-});
 
 const agregarEpleado = (newDict) => {
     let correct;
@@ -18,8 +18,8 @@ const agregarEpleado = (newDict) => {
     if (correct){
         fetch(`${URL_API + endpoint}/nuevo`, {
                 method: 'POST',
-                headers: myHeaders,
-                body: JSON.stringify(newDict),
+                headers: getHeader(),
+                body: JSON.stringify(newDict)
             })
             .then(response => response.json())
             .then(data => {
@@ -45,8 +45,8 @@ const editarEmpleado = (id, newDict) => {
     if (correct){
         fetch(`${URL_API + endpoint}/actualizar/${id}`, {
                 method: 'PUT',
-                headers: myHeaders,
-                body: JSON.stringify(newDict),
+                headers: getHeader(),
+                body: JSON.stringify(newDict)
             })
             .then(response => response.json())
             .then(data => {
@@ -61,7 +61,7 @@ const borrarEmpleado = async (id) => {
 
     fetch(`${URL_API + endpoint}/eliminar/${id}`, {
         method: 'DELETE', 
-        headers: myHeaders, 
+        headers: getHeader()
     })
     .then(response => {
         if (!response.ok) {
@@ -83,7 +83,10 @@ const borrarEmpleado = async (id) => {
 
 const getEmpleados = async () =>{
     try {
-        const response = await fetch(URL_API + endpoint);
+        const response = await fetch(URL_API + endpoint, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -99,7 +102,10 @@ const getEmpleados = async () =>{
 
 const getEmpleadoById = async (id) => {
     try {
-        const response = await fetch(URL_API + endpoint + `/${id}`);
+        const response = await fetch(URL_API + endpoint + `/${id}`, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -116,7 +122,10 @@ const getEmpleadoById = async (id) => {
 
 const getPuestos = async () =>{
     try {
-        const response = await fetch(URL_API + 'puesto');
+        const response = await fetch(URL_API + 'puesto', {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -132,7 +141,10 @@ const getPuestos = async () =>{
 
 const getPuestoById = async (id) => {
     try {
-        const response = await fetch(URL_API + `puesto/${id}`);
+        const response = await fetch(URL_API + `puesto/${id}`, {
+            method: 'GET', 
+            headers: getHeader()
+        })
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }

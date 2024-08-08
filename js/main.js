@@ -4,6 +4,9 @@ import {
 import {
 	eventosOficina
 } from './oficina/oficinaStyles.js'
+import {
+	eventosClientes
+} from './cliente/clienteStyles.js'
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
@@ -145,8 +148,6 @@ allProgress.forEach(item=> {
 	item.style.setProperty('--value', item.dataset.value)
 })
 
-
-
 const opciones = document.querySelectorAll('.opMenu');
 const formularios = document.getElementById('formularios-container');
 const botonesContainer = document.getElementById('botones');
@@ -207,6 +208,9 @@ opciones.forEach(opcion => {
 				break;
 			case 'opOficinas':
 				eventosOficina();
+				break;
+			case 'opClientes':
+				eventosClientes();
 				break;
 			default:
 				break;

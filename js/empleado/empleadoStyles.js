@@ -174,7 +174,7 @@ const createAgregarForm = () => {
                 </div>
                 <div class="box">
                     <label for="input-email">Email: </label>
-                    <input type="text" id="input-email">
+                    <input type="email" id="input-email">
                 </div>
                 <div class="box">
                     <label for="select-oficina">Oficina: </label>
@@ -233,7 +233,7 @@ const createAgregarForm = () => {
     });
 }
 
-const createEditDialog = (e) => {
+const createEditDialog = (empleado) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     dialog.innerHTML = `
@@ -257,7 +257,7 @@ const createEditDialog = (e) => {
             </div>
             <div class="box">
                 <label for="input-email">Email: </label>
-                <input type="text" id="input-email">
+                <input type="email" id="input-email">
             </div>
             <div class="box">
                 <label for="select-oficina">Oficina: </label>
@@ -285,7 +285,7 @@ const createEditDialog = (e) => {
             option.id = o.idOficina;
             option.value = o.idOficina;
             option.innerHTML = o.lineaDireccion1;
-            if (e.idOficina === o.idOficina) {option.setAttribute('selected','')}
+            if (empleado.idOficina === o.idOficina) {option.setAttribute('selected','')}
             document.getElementById('select-oficina').append(option);
         })
     })
@@ -295,7 +295,7 @@ const createEditDialog = (e) => {
             option.id = j.idEmpleado;
             option.value = j.idEmpleado;
             option.innerHTML = `${j.nombre} ${j.apellido1}`;
-            if (e.idJefe === j.idEmpleado) {option.setAttribute('selected','')}
+            if (empleado.idJefe === j.idEmpleado) {option.setAttribute('selected','')}
             document.getElementById('select-jefe').append(option);
         })
     })
@@ -305,11 +305,11 @@ const createEditDialog = (e) => {
             option.id = p.idPuesto;
             option.value = p.idPuesto;
             option.innerHTML = p.nombrePuesto;
-            if (e.idPuesto === p.idPuesto) {option.setAttribute('selected','')}
+            if (empleado.idPuesto === p.idPuesto) {option.setAttribute('selected','')}
             document.getElementById('select-puesto').append(option);
         })
     })
-    getEmpleadoById(e.idEmpleado).then(empleado => {
+    getEmpleadoById(empleado.idEmpleado).then(empleado => {
         document.getElementById('input-nombre').value = empleado.nombre;
         document.getElementById('input-apellido1').value = empleado.apellido1;
         document.getElementById('input-apellido2').value = empleado.apellido2;
@@ -332,8 +332,7 @@ const createEditDialog = (e) => {
             "idJefe": document.querySelector('#select-jefe').value,
             "idPuesto": document.querySelector('#select-puesto').value
         };
-        console.log(newDict);
-        editarEmpleado(e.idEmpleado, newDict);
+        editarEmpleado(empleado.idEmpleado, newDict);
     });
 }
 
@@ -341,7 +340,7 @@ const createSearchDialog = (empleado) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     const title = document.createElement('h1');
-    title.innerHTML = "Buscar empleados";
+    title.innerHTML = "Buscar Empleados";
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('bx', 'bx-x');
     closeBtn.addEventListener('click', () => {

@@ -192,7 +192,7 @@ const createAgregarForm = () => {
     });
 }
 
-const createEditDialog = (o) => {
+const createEditDialog = (oficina) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     dialog.innerHTML = `
@@ -222,25 +222,21 @@ const createEditDialog = (o) => {
     closeBtn.addEventListener('click', () => {
         dialog.remove();
     });
+    dialog.append(closeBtn);
+    document.body.append(dialog);
     getCiudades().then(ciudades => {
         ciudades.forEach(c => {        
             const option = document.createElement('option');
             option.id = c.idCiudad;
             option.value = c.idCiudad;
             option.innerHTML = c.nombreCiudad;
-            if (o.idCiudad === c.idCiudad) {option.setAttribute('selected','')}
+            if (oficina.idCiudad === c.idCiudad) {option.setAttribute('selected','')}
             document.getElementById('select-ciudad').append(option);
         })
     })
-    getOficinaById(o.idOficina).then(oficina => {
-        document.getElementById('input-telefono').value = oficina.telefono;
-        document.getElementById('input-direccion1').value = oficina.lineaDireccion1;
-        document.getElementById('input-direccion2').value = oficina.lineaDireccion2;
-    });
-    dialog.append(closeBtn);
-    document.body.append(dialog);
-    dialog.showModal();    
-
+    document.getElementById('input-telefono').value = oficina.telefono;
+    document.getElementById('input-direccion1').value = oficina.lineaDireccion1;
+    document.getElementById('input-direccion2').value = oficina.lineaDireccion2;
     document.querySelector(".submit-button").addEventListener('click', (e) => {
         e.preventDefault();
         const newDict = {
@@ -249,16 +245,16 @@ const createEditDialog = (o) => {
             "lineaDireccion1": document.querySelector('#input-direccion1').value,
             "lineaDireccion2": document.querySelector('#input-direccion2').value
         };
-        console.log(newDict);
-        editarOficina(o.idOficina, newDict);
+        editarOficina(oficina.idOficina, newDict);
     });
+    dialog.showModal();    
 }
 
 const createSearchDialog = (oficina) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     const title = document.createElement('h1');
-    title.innerHTML = "Buscar oficinas";
+    title.innerHTML = "Buscar Oficinas";
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('bx', 'bx-x');
     closeBtn.addEventListener('click', () => {

@@ -8,10 +8,11 @@
 	<title>Spring</title>
 </head>
 <body>
-	<section id="login" class="active">
+	
+	<section class="login active" id="login-section">
 		<section id="box-sesion">
 			<h2>Inicio de sesión</h2>
-			<form method="post">
+			<form>
 				<div class="input-text">
 					<input type="text" id="input-username" placeholder="">
 					<label for="input-username">Username</label>
@@ -20,11 +21,30 @@
 					<input type="password" id="input-password" placeholder="">
 					<label for="input-password">Contraseña</label>
 				</div>
+				<a  class="register-link">Registrate aqui...</a>
 				<input type="submit" value="Iniciar" id="submit-button">
 			</form>
 		</section>
 	</section>
- 
+	
+	<section class="login" id="register-section">
+		<section id="box-sesion">
+			<h2>Registrate</h2>
+			<form>
+				<div class="input-text">
+					<input type="text" id="register-username" placeholder="">
+					<label for="input-username">Username</label>
+				</div>
+				<div class="input-text">
+					<input type="password" id="register-password" placeholder="">
+					<label for="input-password">Contraseña</label>
+				</div>
+				<a href="" class="login-link">¿Ya estás registrado?  Inicia sesión aqui...</a>
+				<button class="submit-register">Iniciar</button>
+			</form>
+		</section>
+	</section>
+
 	<section id="app">
 		<!-- SIDEBAR -->
 		<section id="sidebar">

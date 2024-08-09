@@ -3,6 +3,7 @@ import {
 } from './loginPeticiones.js'
 
 const boton = document.getElementById('submit-button');
+const link = document.querySelector('.register-link');
 let getHeader;
 boton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -12,7 +13,7 @@ boton.addEventListener('click', (e) => {
     };        
     login(newDict).then(valid => {
         if (valid.access && !sidebar.classList.contains('active')) {
-            document.getElementById('login').classList.remove('active');
+            document.getElementById('login-section').classList.remove('active');
             document.getElementById('app').classList.toggle('active');
             getHeader = () => {
                 return new Headers({
@@ -23,6 +24,9 @@ boton.addEventListener('click', (e) => {
         } 
     })    
 });
-
+link.addEventListener('click', (e) => {
+    document.getElementById('login-section').classList.remove('active');
+    document.getElementById('register-section').classList.toggle('active');
+})
 
 export { getHeader }

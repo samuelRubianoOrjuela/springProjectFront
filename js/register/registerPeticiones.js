@@ -1,13 +1,14 @@
-const URL_API = "http://localhost:8080/login";
+const URL_API = "http://localhost:8080/users/register";
 const myHeaders = new Headers({
     "Content-Type": "application/json"
 });
-const login = async (newDict) => {
-    let correct;
+const register = async (newDict) => {
+    let correct = true;
+    
     for (let i in newDict){
-        if (newDict[i].length > 0){
+        if (newDict[i].length > 0 || typeof(newDict[i]) === 'boolean'){
             correct = true;
-        } else{
+        } else {
             correct = false;
             alert('Debes llenar toda la información para continuar');
             break;
@@ -24,7 +25,7 @@ const login = async (newDict) => {
                 alert("Error: Usuario o contraseña incorrecta");
                 throw new Error('Network response was not ok ' + response.statusText);
             }
-            const data = await response.json();
+            const data = await response.json();            
             const valid = {
                 "data": data,
                 "access": true
@@ -37,5 +38,5 @@ const login = async (newDict) => {
 }
 
 export {
-    login
+    register
 }

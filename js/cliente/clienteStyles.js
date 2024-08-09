@@ -172,7 +172,7 @@ const createAgregarForm = () => {
                 </div>
                 <div class="box">
                     <label for="input-email">Email: </label>
-                    <input type="email" id="input-email">
+                    <input type="text" id="input-email">
                 </div>
                 <div class="box">
                     <label for="input-fax">Fax: </label>
@@ -265,7 +265,7 @@ const createEditDialog = (cliente) => {
             </div>
             <div class="box">
                 <label for="input-email">Email: </label>
-                <input type="email" id="input-email">
+                <input type="text" id="input-email">
             </div>
             <div class="box">
                 <label for="input-fax">Fax: </label>

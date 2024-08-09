@@ -7,7 +7,7 @@ let getHeader;
 boton.addEventListener('click', (e) => {
     e.preventDefault();
     const newDict = {
-        "username": document.querySelector('#input-email').value,
+        "username": document.querySelector('#input-username').value,
         "password": document.querySelector('#input-password').value
     };        
     login(newDict).then(valid => {

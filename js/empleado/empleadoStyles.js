@@ -101,7 +101,7 @@ const createEditarForm = () => {
             result.append(editBtn); 
             document.querySelector('.search-results').append(result);
             editBtn.addEventListener('click', () => {
-                createEditDialog(e);
+                createEditDialog(e);                
             });
         })
     })
@@ -174,7 +174,7 @@ const createAgregarForm = () => {
                 </div>
                 <div class="box">
                     <label for="input-email">Email: </label>
-                    <input type="email" id="input-email">
+                    <input type="text" id="input-email">
                 </div>
                 <div class="box">
                     <label for="select-oficina">Oficina: </label>
@@ -257,7 +257,7 @@ const createEditDialog = (empleado) => {
             </div>
             <div class="box">
                 <label for="input-email">Email: </label>
-                <input type="email" id="input-email">
+                <input type="text" id="input-email">
             </div>
             <div class="box">
                 <label for="select-oficina">Oficina: </label>
@@ -348,8 +348,8 @@ const createSearchDialog = (empleado) => {
     });
     dialog.append(closeBtn, title);
     document.getElementById('app').append(dialog);
-    Object.values(empleado).forEach((item, i) => {
-        if (i !== 0) {
+    Object.values(empleado).forEach((item, i) => {        
+        if (i !== 0 && i !== 8 && item != null) {
             const text = document.createElement('div');
             text.classList.add('text-container',`text-container-${i}`);
             dialog.append(text);
@@ -362,7 +362,7 @@ const createSearchDialog = (empleado) => {
     getOficinaById(empleado.idOficina).then(oficina => {
         document.querySelector('.text-container-5').innerHTML = `<i class="bx bxs-circle"></i> Oficina: ${oficina.lineaDireccion1}`;
     })
-    getEmpleadoById(empleado.idJefe).then(jefe => {
+    getEmpleadoById(empleado.idJefe).then(jefe => {        
         document.querySelector('.text-container-6').innerHTML = `<i class="bx bxs-circle"></i> Jefe: ${jefe.nombre} ${jefe.apellido1}`;
     })
     getPuestoById(empleado.idPuesto).then(puesto => {

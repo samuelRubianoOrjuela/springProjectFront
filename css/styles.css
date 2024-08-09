@@ -508,7 +508,7 @@ form h1 {
     font-weight: bold;
 }
 
-#app input[type="text"], input[type="number"], input[type="email"], select {
+#app input[type="text"], input[type="number"], select {
     margin-bottom: 24px;
     padding: 10px;
     border: 1px solid #ddd;

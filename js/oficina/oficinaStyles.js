@@ -4,8 +4,7 @@ import {
     borrarOficina,
     getCiudades,
     getCiudadById,
-    getOficinas,
-    getOficinaById
+    getOficinas
 } from './oficinaPeticiones.js'
 
 const removeElements = () => {

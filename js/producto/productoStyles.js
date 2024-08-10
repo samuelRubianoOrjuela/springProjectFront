@@ -376,9 +376,9 @@ const createSearchDialog = (producto) => {
     dialog.showModal();    
 }
 
-const opOficinas = document.getElementById('opProductos');
+const opProductos = document.getElementById('opProductos');
 
-opOficinas.addEventListener('click', ()=>{
+opProductos.addEventListener('click', ()=>{
     createAgregarForm();
 });
 

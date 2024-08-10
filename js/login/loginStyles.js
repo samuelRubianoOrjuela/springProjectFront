@@ -15,7 +15,6 @@ boton.addEventListener('click', (e) => {
         if (valid.access && !sidebar.classList.contains('active')) {
             document.getElementById('login-section').classList.remove('active');
             document.getElementById('app').classList.toggle('active');
-            console.log(valid.data.token);
             getHeader = () => {
                 return new Headers({
                     "Content-Type": "application/json",

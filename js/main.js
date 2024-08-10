@@ -13,6 +13,9 @@ import {
 import {
 	eventosPagos
 } from './pago/pagoStyles.js'
+import {
+	eventosPedidos
+} from './pedido/pedidoStyles.js'
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
@@ -220,8 +223,12 @@ opciones.forEach(opcion => {
 				break;
 			case 'opProductos':
 				eventosProductos();
+				break;
 			case 'opPagos':
 				eventosPagos();
+				break;
+			case 'opPedidos':
+				eventosPedidos();
 				break;
 			default:
 				break;

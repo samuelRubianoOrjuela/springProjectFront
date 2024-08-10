@@ -537,6 +537,10 @@ form h1 {
     font-weight: bold;
 }
 
+input[type="date"]{
+	cursor: pointer;
+}
+
 #app input[type="text"], input[type="number"], input[type="date"], select {
     margin-bottom: 24px;
     padding: 10px;

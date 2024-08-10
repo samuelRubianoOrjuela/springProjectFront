@@ -352,7 +352,7 @@ const createEditDialog = (cliente) => {
             "direccionId": document.querySelector('#select-direccion').value,
             "empleadoRepVentasId": document.querySelector('#select-empRepVentas').value,
             "limiteCredito": document.querySelector('#input-limiteCredito').value
-        };
+        };        
         editarCliente(cliente.idCliente, newDict);
     });
 }

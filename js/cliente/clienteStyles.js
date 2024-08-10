@@ -151,7 +151,6 @@ const createEditarForm = () => {
     })
 }
 
-
 const createAgregarForm = () => {
     removeElements();
     const ventanaAgregar = document.getElementById('ventana-agregar');

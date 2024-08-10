@@ -88,11 +88,11 @@ const getClientes = async () =>{
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
-        const oficinas = await response.json();
-        if (!Array.isArray(oficinas)) {
+        const clientes = await response.json();
+        if (!Array.isArray(clientes)) {
             throw new Error('La respuesta no es un arreglo');
         }
-        return oficinas; 
+        return clientes; 
     } catch (error) {
         console.error('Hubo un problema con la petición Fetch:', error);
     }

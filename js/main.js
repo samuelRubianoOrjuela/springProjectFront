@@ -10,6 +10,9 @@ import {
 import {
 	eventosProductos
 } from './producto/productoStyles.js'
+import {
+	eventosPagos
+} from './pago/pagoStyles.js'
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
@@ -217,6 +220,8 @@ opciones.forEach(opcion => {
 				break;
 			case 'opProductos':
 				eventosProductos();
+			case 'opPagos':
+				eventosPagos();
 				break;
 			default:
 				break;

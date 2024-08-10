@@ -79,7 +79,7 @@ li {
     grid-template-rows: 1fr 3fr;
     border-radius: 18px;
     background-color: var(--light);
-    height: 60vh;
+    height: 70vh;
     min-height: 330px;
     width: 36vw;
     min-width: 400px;
@@ -537,7 +537,7 @@ form h1 {
     font-weight: bold;
 }
 
-#app input[type="text"], input[type="number"], select {
+#app input[type="text"], input[type="number"], input[type="date"], select {
     margin-bottom: 24px;
     padding: 10px;
     border: 1px solid #ddd;

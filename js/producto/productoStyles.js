@@ -46,18 +46,18 @@ const createBorrarForm = () => {
             }
         });
     });
-    getOficinas().then(oficinas => {
-        oficinas.forEach(o => {
+    getProductos().then(productos => {
+        productos.forEach(p => {
             const result = document.createElement('div');
             result.classList.add('info-container');
-            result.innerHTML = `${o.idOficina} - ${o.lineaDireccion1} - ${o.lineaDireccion2}`;
+            result.innerHTML = `${p.idProducto} - ${p.nombre} - ${p.gama}`;
             const deleteBtn = document.createElement('i');
             deleteBtn.classList.add('bx', 'bx-trash');
             result.append(deleteBtn); 
             document.querySelector('.search-results').append(result);
             deleteBtn.addEventListener('click', () => {
-                if (confirm("¿Estás seguro de que deseas eliminar esta oficina?")) {
-                    borrarOficina(o.idOficina);
+                if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+                    borrarProducto(p.idProducto);
                 }
             });
         })
@@ -91,17 +91,17 @@ const createBuscarForm = () => {
             }
         });
     });
-    getOficinas().then(oficinas => {
-        oficinas.forEach(o => {
+    getProductos().then(productos => {
+        productos.forEach(p => {
             const result = document.createElement('div');
             result.classList.add('info-container');
-            result.innerHTML = `${o.idOficina} - ${o.lineaDireccion1} - ${o.lineaDireccion2}`;
+            result.innerHTML = `${p.idProducto} - ${p.nombre} - ${p.gama}`;
             const searchBtn = document.createElement('i');
             searchBtn.classList.add('bx', 'bx-info-circle');
             result.append(searchBtn); 
             document.querySelector('.search-results').append(result);
             searchBtn.addEventListener('click', () => {
-                createSearchDialog(o);
+                createSearchDialog(p);
             });
         })
     })
@@ -109,6 +109,7 @@ const createBuscarForm = () => {
 
 const createEditarForm = () => {
     removeElements();
+    
     const ventanaEditar = document.getElementById('ventana-editar')
     ventanaEditar.innerHTML = `
         <div class="container" id="container-editar">
@@ -134,17 +135,18 @@ const createEditarForm = () => {
             }
         });
     });
-    getOficinas().then(oficinas => {
-        oficinas.forEach(o => {
+    
+    getProductos().then(productos => {        
+        productos.forEach(p => {
             const result = document.createElement('div');
             result.classList.add('info-container');
-            result.innerHTML = `${o.idOficina} - ${o.lineaDireccion1} - ${o.lineaDireccion2}`;
+            result.innerHTML = `${p.idProducto} - ${p.nombre} - ${p.gama}`;
             const editBtn = document.createElement('i');
             editBtn.classList.add('bx', 'bx-edit');
             result.append(editBtn); 
             document.querySelector('.search-results').append(result);
             editBtn.addEventListener('click', () => {
-                createEditDialog(o);
+                createEditDialog(p);
             });
         })
     })
@@ -217,16 +219,7 @@ const createAgregarForm = () => {
             document.getElementById('select-proveedor').append(option);
         })
     })
-    /* 
-    private String nombre;
-    private String gama;
-    private Long idDimensiones;
-    private Long idProveedor;
-    private String descripcion;
-    private Short cantidadEnStock;
-    private BigDecimal precioVenta;
-    private BigDecimal precioProveedor;
-    */
+
     document.querySelector(".submit-button").addEventListener('click', (e) => {
         e.preventDefault();
         const newDict = {
@@ -243,27 +236,43 @@ const createAgregarForm = () => {
     });
 }
 
-const createEditDialog = (oficina) => {
+const createEditDialog = (producto) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     dialog.innerHTML = `
-        <h1>Editar Oficina</h1>
-        <form>
+        <h1>Editar Producto</h1>
+       <form>
             <div class="box">
-                <label for="select-ciudad">Ciudad: </label>
-                <select id="select-ciudad"></select>
+                <label for="input-nombre">Nombre: </label>
+                <input type="text" id="input-nombre">
             </div>
             <div class="box">
-                <label for="input-telefono">Telefono: </label>
-                <input type="number" id="input-telefono">
+                <label for="select-gama">Gama: </label>
+                <select name="" id="select-gama"></select>
             </div>
             <div class="box">
-                <label for="input-direccion1">Direccion 1: </label>
-                <input type="text" id="input-direccion1">
+                <label for="select-dimension">Dimensión: </label>
+                <select name="" id="select-dimension"></select>
             </div>
             <div class="box">
-                <label for="input-direccion2">Direccion 2: </label>
-                <input type="text" id="input-direccion2">
+                <label for="select-proveedor">Proveedor: </label>
+                <select name="" id="select-proveedor"></select>
+            </div>
+            <div class="box">
+                <label for="input-descripcion">Descripcion: </label>
+                <input type="text" id="input-descripcion">
+            </div>
+            <div class="box">
+                <label for="input-stock">Cantidad en Stock: </label>
+                <input type="number" id="input-stock">
+            </div>
+            <div class="box">
+                <label for="input-precioVenta">Precio de Venta: </label>
+                <input type="number" id="input-precioVenta">
+            </div>
+            <div class="box">
+                <label for="input-precioProveedor">Precio de Proveedor: </label>
+                <input type="number" id="input-precioProveedor">
             </div>
             <button class="submit-button">+</button>
         </form>
@@ -275,37 +284,67 @@ const createEditDialog = (oficina) => {
     });
     dialog.append(closeBtn);
     document.getElementById('app').append(dialog);
-    getCiudades().then(ciudades => {
-        ciudades.forEach(c => {        
+    getGamas().then(gamas => {
+        gamas.forEach(g => {        
             const option = document.createElement('option');
-            option.id = c.idCiudad;
-            option.value = c.idCiudad;
-            option.innerHTML = c.nombreCiudad;
-            if (oficina.idCiudad === c.idCiudad) {option.setAttribute('selected','')}
-            document.getElementById('select-ciudad').append(option);
+            option.id = g.gama;
+            option.value = g.gama;
+            option.innerHTML = g.gama;
+            if (producto.gama === g.gama) {option.setAttribute('selected','')}
+            document.getElementById('select-gama').append(option);
         })
     })
-    document.getElementById('input-telefono').value = oficina.telefono;
-    document.getElementById('input-direccion1').value = oficina.lineaDireccion1;
-    document.getElementById('input-direccion2').value = oficina.lineaDireccion2;
+    getDimensiones().then(dimensiones => {
+        dimensiones.forEach(d => {        
+            const option = document.createElement('option');
+            option.id = d.idDimensiones;
+            option.value = d.idDimensiones;
+            option.innerHTML = `Alto: ${d.alto} - Ancho ${d.ancho} - Largo: ${d.largo}`;
+            if (producto.idCiudad === d.idCiudad) {option.setAttribute('selected','')}
+            document.getElementById('select-dimension').append(option);
+        })
+    })
+    getProveedores().then(proveedores => {
+        proveedores.forEach(p => {        
+            const option = document.createElement('option');
+            option.id = p.idProveedor;
+            option.value = p.idProveedor;
+            option.innerHTML = p.nombre;
+            if (producto.idCiudad === p.idCiudad) {option.setAttribute('selected','')}
+            document.getElementById('select-proveedor').append(option);
+        })
+    })
+
+    document.getElementById('input-nombre').value = producto.nombre;
+    document.getElementById('input-descripcion').value = producto.descripcion;
+    document.getElementById('input-stock').value = producto.cantidadEnStock;
+    document.getElementById('input-precioVenta').value = producto.precioVenta;
+    document.getElementById('input-precioProveedor').value = producto.precioProveedor;
+
     document.querySelector(".submit-button").addEventListener('click', (e) => {
         e.preventDefault();
+
         const newDict = {
-            "idCiudad": document.querySelector('#select-ciudad').value,
-            "telefono": document.querySelector('#input-telefono').value,
-            "lineaDireccion1": document.querySelector('#input-direccion1').value,
-            "lineaDireccion2": document.querySelector('#input-direccion2').value
-        };
-        editarOficina(oficina.idOficina, newDict);
+            "idProducto": `${producto.idProducto}`,
+            "nombre": document.querySelector('#input-nombre').value,
+            "gama": document.querySelector('#select-gama').value,
+            "idDimensiones": document.querySelector('#select-dimension').value,
+            "idProveedor": document.querySelector('#select-proveedor').value,
+            "descripcion": document.querySelector('#input-descripcion').value,
+            "cantidadEnStock": document.querySelector('#input-stock').value,
+            "precioVenta": document.querySelector('#input-precioVenta').value,
+            "precioProveedor": document.querySelector('#input-precioProveedor').value
+        };   
+        editarProducto(producto.idProducto, newDict);
     });
     dialog.showModal();    
 }
 
-const createSearchDialog = (oficina) => {
+const createSearchDialog = (producto) => {
     const dialog = document.createElement('dialog');
     dialog.classList.add('container');
     const title = document.createElement('h1');
-    title.innerHTML = "Buscar Oficinas";
+    title.innerHTML = "Buscar Producto";
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('bx', 'bx-x');
     closeBtn.addEventListener('click', () => {
@@ -313,19 +352,27 @@ const createSearchDialog = (oficina) => {
     });
     dialog.append(closeBtn, title);
     document.getElementById('app').append(dialog);
-    Object.values(oficina).forEach((item, i) => {        
+    Object.values(producto).forEach((item, i) => {        
         if (i !== 0) {
             const text = document.createElement('div');
             text.classList.add('text-container',`text-container-${i}`);
             dialog.append(text);
         }
     })
-    getCiudadById(oficina.idCiudad).then(ciudad => {
-        document.querySelector('.text-container-1').innerHTML = `<i class="bx bxs-circle"></i> Ciudad: ${ciudad.nombreCiudad}`;
+    getGamaById(producto.gama).then(gama => {
+        document.querySelector('.text-container-1').innerHTML = `<i class="bx bxs-circle"></i> Gama: ${gama.gama}`;
     })
-    document.querySelector('.text-container-2').innerHTML = `<i class="bx bxs-circle"></i> Telefono: ${oficina.telefono}`;
-    document.querySelector('.text-container-3').innerHTML = `<i class="bx bxs-circle"></i> Direccion 1: ${oficina.lineaDireccion1}`;
-    document.querySelector('.text-container-4').innerHTML = `<i class="bx bxs-circle"></i> Direccion 2: ${oficina.lineaDireccion2}`;
+    getDimensionById(producto.idDimensiones).then(dimension => {        
+        document.querySelector('.text-container-2').innerHTML = `<i class="bx bxs-circle"></i> Dimensión: Alto: ${dimension.alto} - Ancho ${dimension.ancho} - Largo: ${dimension.largo}`;
+    })
+    getProveedorById(producto.idProveedor).then(proveedor => {
+        document.querySelector('.text-container-3').innerHTML = `<i class="bx bxs-circle"></i> Proveedor: ${proveedor.nombre}`;
+    }) 
+    document.querySelector('.text-container-4').innerHTML = `<i class="bx bxs-circle"></i> Nombre: ${producto.nombre}`;
+    document.querySelector('.text-container-5').innerHTML = `<i class="bx bxs-circle"></i> Descripción: ${producto.descripcion}`;
+    document.querySelector('.text-container-6').innerHTML = `<i class="bx bxs-circle"></i> Cantidad en Stock: ${producto.cantidadEnStock}`;
+    document.querySelector('.text-container-7').innerHTML = `<i class="bx bxs-circle"></i> Precio de Venta: ${producto.precioVenta}`;
+    document.querySelector('.text-container-8').innerHTML = `<i class="bx bxs-circle"></i> Precio de Proveedor: ${producto.precioProveedor}`;
     dialog.showModal();    
 }
 
@@ -335,7 +382,7 @@ opOficinas.addEventListener('click', ()=>{
     createAgregarForm();
 });
 
-const eventosOficina = () => {
+const eventosProductos = () => {
     document.getElementById('boton-agregar').addEventListener('click', () => {
         createAgregarForm();
     });
@@ -350,5 +397,5 @@ const eventosOficina = () => {
     });
 }
 export {
-    eventosOficina
+    eventosProductos
 }

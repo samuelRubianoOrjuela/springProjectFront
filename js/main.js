@@ -7,6 +7,9 @@ import {
 import {
 	eventosClientes
 } from './cliente/clienteStyles.js'
+import {
+	eventosProductos
+} from './producto/productoStyles.js'
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
@@ -211,6 +214,9 @@ opciones.forEach(opcion => {
 				break;
 			case 'opClientes':
 				eventosClientes();
+				break;
+			case 'opProductos':
+				eventosProductos();
 				break;
 			default:
 				break;
